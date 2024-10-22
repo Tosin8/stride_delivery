@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:stride_delivery/screens/deliveries.dart';
 import 'package:stride_delivery/screens/overview.dart';
 import 'package:stride_delivery/screens/tracking.dart';

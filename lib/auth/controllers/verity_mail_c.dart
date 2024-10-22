@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 
-import '../../screens/successful.dart';
+
 import '../../utils/widgets/constants/images_c.dart';
 import '../../utils/widgets/popups/loaders.dart';
 import '../repository/auth_repo.dart';

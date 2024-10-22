@@ -6,8 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:local_auth/local_auth.dart';  // Biometric authentication package
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:stride/auth/controllers/login_c.dart';
-import 'package:stride/auth/forms/signup.dart';
+
 import '../../utils/validators/validations.dart';
 import 'forgotpwd.dart';
 
@@ -199,19 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               SizedBox(height: 20.h),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("Don't have an account?", style: TextStyle(fontSize: 14.sp)),
-                                  SizedBox(width: 10.w),
-                                  TextButton(
-                                    onPressed: () {
-                                      Get.to(() => const Signup());
-                                    },
-                                    child: Text('Create Account', style: TextStyle(fontSize: 14.sp)),
-                                  ),
-                                ],
-                              ),
+                             
                               // Fingerprint login option
                               if (isFingerIdEnabled)
                                 Column(

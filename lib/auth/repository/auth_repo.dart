@@ -2,16 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:stride/utils/exceptions/format_exceptions.dart';
-import 'package:stride/utils/exceptions/platform_exceptions.dart';
+
 import '../../screens/navigation_menu.dart';
-import '../../screens/splash.dart';
+
 import '../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../utils/exceptions/firebase_exception.dart';
 import '../../utils/storage/storage_utility.dart';
 import '../forms/login.dart';
-import '../forms/verify.dart';
+
 import 'user_repo.dart';
 
 class AuthenticationRepository extends GetxController {

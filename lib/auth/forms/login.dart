@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:local_auth/local_auth.dart';  // Biometric authentication package
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:stride_delivery/auth/controllers/login_c.dart';
 
 import '../../utils/validators/validations.dart';
 import 'forgotpwd.dart';

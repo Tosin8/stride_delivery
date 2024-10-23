@@ -59,19 +59,19 @@ if(user?.emailVerified ?? false) {
   }
 
   /// manually check if email verification. 
-  checkEmailVerificationStatus() async {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if(currentUser != null && currentUser.emailVerified) {
-      Get.off(
-        () => SuccessScreen(
-          image: SImages.successfullyRegisterAnimation, 
-          title: 'Your account is now created',
-           subTitle: 'BTexts.yourAccountCreatedSubTitle', 
-           onTap: () => AuthenticationRepository.instance.screenRedirect(),
-           )
-           ); 
-    }
-  }
+  // checkEmailVerificationStatus() async {
+  //   final currentUser = FirebaseAuth.instance.currentUser;
+  //   if(currentUser != null && currentUser.emailVerified) {
+  //     Get.off(
+  //       () => SuccessScreen(
+  //         image: SImages.successfullyRegisterAnimation, 
+  //         title: 'Your account is now created',
+  //          subTitle: 'BTexts.yourAccountCreatedSubTitle', 
+  //          onTap: () => AuthenticationRepository.instance.screenRedirect(),
+  //          )
+  //          ); 
+  //   }
+  // }
 }
 
 

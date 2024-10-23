@@ -2,11 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stride_delivery/utils/exceptions/platform_exceptions.dart';
 
 import '../../screens/navigation_menu.dart';
 
 import '../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../utils/exceptions/firebase_exception.dart';
+import '../../utils/exceptions/format_exceptions.dart';
 import '../../utils/storage/storage_utility.dart';
 import '../forms/login.dart';
 

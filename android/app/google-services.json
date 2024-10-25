@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "189567646506",
+    "project_id": "stride-67509",
+    "storage_bucket": "stride-67509.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189567646506:android:b84da6073cab93d6db7c53",
+        "android_client_info": {
+          "package_name": "com.example.stride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189567646506-lh5sve4m8ovk1jjaa0odsv6nam3kui9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeyOmY98YLbC1UidGNulsxNXLwj3Ts1nY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189567646506-lh5sve4m8ovk1jjaa0odsv6nam3kui9j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "189567646506-v1b8s7pr4no78oi7lehd0f7212kbdq4u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stride"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189567646506:android:a58a81a01a1bdc9ddb7c53",
+        "android_client_info": {
+          "package_name": "com.example.stride_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189567646506-lh5sve4m8ovk1jjaa0odsv6nam3kui9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeyOmY98YLbC1UidGNulsxNXLwj3Ts1nY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189567646506-lh5sve4m8ovk1jjaa0odsv6nam3kui9j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "189567646506-v1b8s7pr4no78oi7lehd0f7212kbdq4u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stride"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

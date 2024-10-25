@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:stride_delivery/auth/repository/user_repo.dart';
+import 'package:stride_delivery/firebase_options.dart';
 
 import 'app.dart';
 import 'auth/repository/auth_repo.dart';

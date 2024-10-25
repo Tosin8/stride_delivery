@@ -84,7 +84,8 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:stride/utils/formatters/formatter.dart';
+import 'package:stride_delivery/utils/formatters/formatter.dart';
+
 
 class UserModel {
   final String id;

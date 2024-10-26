@@ -121,7 +121,7 @@ class SplashButton extends StatelessWidget {
           ),
           child: const Align(
             child: Text(
-              'Start Shopping',
+              'Begin Delivery',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,

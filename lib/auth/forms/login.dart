@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 10.h),
                         Text(
-                          'Welcome back, \nkindly sign in to your account',
+                          'Kindly sign in to your account',
                           style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
                         ),
                         SizedBox(height: 20.h),

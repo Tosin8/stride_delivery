@@ -11,7 +11,9 @@ class _OverviewState extends State<Overview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold (
-      body: Container (), 
+      body: Container (
+        child: const Center(child: Text('Overview')),
+      ), 
     );
   }
 }

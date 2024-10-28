@@ -10,6 +10,10 @@ class Tracking extends StatefulWidget {
 class _TrackingState extends State<Tracking> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold( 
+      body: Center(
+        child: Text('Tracking'),
+      )
+    );
   }
 }

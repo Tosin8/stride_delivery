@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride_delivery/screens/deliveries.dart';
 import 'package:stride_delivery/screens/overview.dart';
+import 'package:stride_delivery/screens/profile.dart';
 import 'package:stride_delivery/screens/tracking.dart';
 
 
@@ -26,12 +27,12 @@ class NavigationMenu extends StatelessWidget {
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           destinations: [
             NavigationDestination(
-              icon: Icon(Iconsax.home, color: controller.selectedIndex.value == 0 ? Colors.white : Colors.grey),
+              icon: Icon(Iconsax.menu, color: controller.selectedIndex.value == 0 ? Colors.white : Colors.grey),
               label: 'OverView',
             ),
             NavigationDestination(
               icon: Icon(Iconsax.shop, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.grey),
-              label: 'Orders',
+              label: 'Deliveries',
             ),
             NavigationDestination(
               icon: Icon(Iconsax.heart, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
@@ -56,6 +57,7 @@ class NavigationController extends GetxController {
     const Overview(),
     const Deliveries(),
      const Tracking(),
+     const Profile(), 
    
   ];
 }

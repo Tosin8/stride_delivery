@@ -31,11 +31,11 @@ class NavigationMenu extends StatelessWidget {
               label: 'OverView',
             ),
             NavigationDestination(
-              icon: Icon(Iconsax.shop, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.grey),
+              icon: Icon(Iconsax.lock_12, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.grey),
               label: 'Deliveries',
             ),
             NavigationDestination(
-              icon: Icon(Iconsax.heart, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
+              icon: Icon(Iconsax.location, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
               label: 'Track',
             ),
             NavigationDestination(

@@ -27,15 +27,15 @@ class NavigationMenu extends StatelessWidget {
           destinations: [
             NavigationDestination(
               icon: Icon(Iconsax.home, color: controller.selectedIndex.value == 0 ? Colors.white : Colors.grey),
-              label: 'Home',
+              label: 'OverView',
             ),
             NavigationDestination(
               icon: Icon(Iconsax.shop, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.grey),
-              label: 'Menu',
+              label: 'Orders',
             ),
             NavigationDestination(
               icon: Icon(Iconsax.heart, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
-              label: 'Wishlist',
+              label: 'Track',
             ),
             NavigationDestination(
               icon: Icon(Iconsax.user, color: controller.selectedIndex.value == 3 ? Colors.white : Colors.grey),

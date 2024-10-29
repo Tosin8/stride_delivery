@@ -35,7 +35,7 @@ class NavigationMenu extends StatelessWidget {
             ),
             NavigationDestination(
               icon: Icon(Iconsax.heart, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
-              label: 'Wishlist',
+              label: 'Track',
             ),
             NavigationDestination(
               icon: Icon(Iconsax.user, color: controller.selectedIndex.value == 3 ? Colors.white : Colors.grey),

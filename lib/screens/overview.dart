@@ -27,6 +27,8 @@ class _OverviewState extends State<Overview> {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,9 +77,21 @@ class _OverviewState extends State<Overview> {
                     text: '12 Returned \n Orders',
                     icon: Iconsax.activity,
                   ),
+                  Overview_Card(
+                    text: '12 Returned \n Orders',
+                    icon: Iconsax.activity,
+                  ),
                 ],
               ),
             ),
+            const SizedBox(height: 10), 
+           const Text(
+                  'New Deliveries',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
           ],
         ),
       ),

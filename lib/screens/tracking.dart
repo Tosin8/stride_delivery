@@ -12,7 +12,7 @@ class _TrackingState extends State<Tracking> {
   Widget build(BuildContext context) {
     return const Scaffold( 
       body: Center(
-        child: Text('Tracking'),
+        child: Text('No Tracking Delivery'),
       )
     );
   }

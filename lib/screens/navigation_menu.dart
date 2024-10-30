@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride_delivery/screens/deliveries.dart';
 import 'package:stride_delivery/screens/overview.dart';
-import 'package:stride_delivery/screens/profile.dart';
+
 import 'package:stride_delivery/screens/tracking.dart';
 
 
@@ -38,10 +38,7 @@ class NavigationMenu extends StatelessWidget {
               icon: Icon(Iconsax.location, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
               label: 'Track',
             ),
-            NavigationDestination(
-              icon: Icon(Iconsax.user, color: controller.selectedIndex.value == 3 ? Colors.white : Colors.grey),
-              label: 'Profile',
-            ),
+        
           ],
         ),
       ),
@@ -57,7 +54,7 @@ class NavigationController extends GetxController {
     const Overview(),
     const Deliveries(),
      const Tracking(),
-     const Profile(), 
+     
    
   ];
 }

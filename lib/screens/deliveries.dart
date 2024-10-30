@@ -10,8 +10,18 @@ class Deliveries extends StatefulWidget {
 class _DeliveriesState extends State<Deliveries> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold( 
-      body: Center(
+    return  Scaffold( 
+      appBar: AppBar(
+        title: const Text(
+          'Deliveries',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
+        ),
+        ),
+      body: const Center(
         child: Text('deliveries'),
       ),
     );

@@ -69,6 +69,11 @@ class _OverviewState extends State<Overview> {
                 scrollDirection: Axis.horizontal,
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: const [
+                   CategoryCard(
+                    title: 'New Orders',
+                    icon: Iconsax.add_circle, // Icon for New Orders
+                    description: '8 New Orders',
+                  ),
                   CategoryCard(
                     title: 'Deliveries',
                     icon: Iconsax.activity, // Icon for Deliveries
@@ -79,11 +84,7 @@ class _OverviewState extends State<Overview> {
                     icon: Iconsax.close_circle, // Icon for Returned Orders
                     description: '12 Returned Orders',
                   ),
-                  CategoryCard(
-                    title: 'New Orders',
-                    icon: Iconsax.add_circle, // Icon for New Orders
-                    description: '8 New Orders',
-                  ),
+                 
                 
                 ],
               ),

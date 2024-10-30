@@ -64,34 +64,38 @@ class _OverviewState extends State<Overview> {
             ),
             const SizedBox(height: 18),
             SizedBox(
-              height: 100, // Set a fixed height for the ListView
+              height: 100,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: const [
-                  Overview_Card(
-                    text: '26 Deliveries \n this week',
-                    icon: Iconsax.activity,
+                  CategoryCard(
+                    title: 'Deliveries',
+                    icon: Iconsax.activity, // Icon for Deliveries
+                    description: '26 Deliveries this week',
                   ),
-                  Overview_Card(
-                    text: '12 Returned \n Orders',
-                    icon: Iconsax.activity,
+                  CategoryCard(
+                    title: 'Returned Orders',
+                    icon: Iconsax.close_circle, // Icon for Returned Orders
+                    description: '12 Returned Orders',
                   ),
-                  Overview_Card(
-                    text: '12 Returned \n Orders',
-                    icon: Iconsax.activity,
+                  CategoryCard(
+                    title: 'New Orders',
+                    icon: Iconsax.add_circle, // Icon for New Orders
+                    description: '8 New Orders',
                   ),
+                
                 ],
               ),
             ),
-            const SizedBox(height: 10), 
-           const Text(
-                  'New Deliveries',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+            const SizedBox(height: 10),
+            const Text(
+              'New Deliveries',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ],
         ),
       ),
@@ -99,50 +103,68 @@ class _OverviewState extends State<Overview> {
   }
 }
 
-class Overview_Card extends StatelessWidget {
-  const Overview_Card({
-    super.key,
-    required this.text,
-    required this.icon,
-  });
-
-  final String text;
+class CategoryCard extends StatelessWidget {
+  final String title;
   final IconData icon;
+  final String description;
+
+  const CategoryCard({
+    super.key,
+    required this.title,
+    required this.icon,
+    this.description = '',
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          width: 1.0,
-        ),
-        color: Colors.white10,
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      width: 180,
-      height: 80,
-      child: Row(
-        children: [
-          Container(
-            height: 50,
-            width: 50,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              color: Colors.white,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.blue.withOpacity(0.1),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Icon(
+                icon,
+                color: Colors.blue,
+                size: 30,
+              ),
             ),
-            child: Icon(
-              icon,
-              color: Colors.black,
-              size: 26,
+            const SizedBox(width: 16),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (description.isNotEmpty)
+                    Text(
+                      description,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                ],
+              ),
             ),
-          ),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

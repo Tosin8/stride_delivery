@@ -134,7 +134,9 @@
 //   }
 // }
 
+
 import 'package:flutter/material.dart';
+import 'package:stride_delivery/screens/tracking.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Deliveries extends StatefulWidget {
@@ -147,13 +149,37 @@ class Deliveries extends StatefulWidget {
 class _DeliveriesState extends State<Deliveries> {
   // Sample data for today's deliveries
   final List<Delivery> todayDeliveries = [
-    Delivery(orderId: '123', customerName: 'John Doe', status: 'Out for delivery', deliveryTime: '10:00 AM', products: ['Product A', 'Product B'], address: '123 Main St', phone: '555-1234'),
-    Delivery(orderId: '124', customerName: 'Jane Smith', status: 'Delivered', deliveryTime: '9:30 AM', products: ['Product C'], address: '456 Maple Ave', phone: '555-5678'),
+    Delivery(
+      orderId: '123',
+      customerName: 'John Doe',
+      status: 'Out for delivery',
+      deliveryTime: '10:00 AM',
+      products: ['Product A', 'Product B'],
+      address: '123 Main St',
+      phone: '555-1234',
+    ),
+    Delivery(
+      orderId: '124',
+      customerName: 'Jane Smith',
+      status: 'Delivered',
+      deliveryTime: '9:30 AM',
+      products: ['Product C'],
+      address: '456 Maple Ave',
+      phone: '555-5678',
+    ),
   ];
 
   // Sample data for yesterday's deliveries
   final List<Delivery> yesterdayDeliveries = [
-    Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM', products: ['Product D', 'Product E'], address: '789 Oak St', phone: '555-8765'),
+    Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ),
   ];
 
   @override
@@ -226,14 +252,11 @@ class _DeliveriesState extends State<Deliveries> {
         builder: (context) => DeliveryDetail(delivery: delivery),
       ),
     );
-  }
+    }
 }
 
 class DeliveryTitle extends StatelessWidget {
-  const DeliveryTitle({
-    super.key,
-    required this.title,
-  });
+  const DeliveryTitle({super.key, required this.title});
 
   final String title;
 
@@ -357,7 +380,8 @@ class DeliveryDetail extends StatelessWidget {
               'Products Ordered:',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            for (var product in delivery.products) Text(product, style: const TextStyle(fontSize: 14)),
+            for (var product in delivery.products)
+              Text(product, style: const TextStyle(fontSize: 14)),
             const SizedBox(height: 16),
             Text(
               'Address: ${delivery.address}',
@@ -374,6 +398,21 @@ class DeliveryDetail extends StatelessWidget {
               icon: const Icon(Icons.phone),
               label: const Text('Call Customer'),
             ),
+            const Spacer(), // Pushes the button to the bottom
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TrackingScreen(
+                      deliveryAddress: delivery.address,
+                      customerName: delivery.customerName,
+                    ),
+                  ),
+                );
+              },
+              child: const Text('Initiate Delivery'),
+            ),
           ],
         ),
       ),
@@ -382,8 +421,8 @@ class DeliveryDetail extends StatelessWidget {
 
   void _makePhoneCall(String phone) async {
     final Uri url = Uri(scheme: 'tel', path: phone);
-    if (await canLaunch(url.toString())) {
-      await launch(url.toString());
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
@@ -417,8 +456,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return child != oldDelegate.child;
   }
 }
-

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Tracking extends StatefulWidget {
-  const Tracking({super.key});
+class TrackingScreen extends StatefulWidget {
+  const TrackingScreen({super.key, required String deliveryAddress, required String customerName});
 
   @override
-  State<Tracking> createState() => _TrackingState();
+  State<TrackingScreen> createState() => _TrackingScreenState();
 }
 
-class _TrackingState extends State<Tracking> {
+class _TrackingScreenState extends State<TrackingScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold( 

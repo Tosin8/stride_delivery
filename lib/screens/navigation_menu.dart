@@ -53,7 +53,7 @@ class NavigationController extends GetxController {
   final screens = [
     const Overview(),
     const Deliveries(),
-     const Tracking(),
+     const TrackingScreen(deliveryAddress: '', customerName: '',),
      
    
   ];

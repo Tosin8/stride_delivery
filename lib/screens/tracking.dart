@@ -19,14 +19,12 @@ class TrackingScreen extends StatefulWidget {
 }
 
 class _TrackingScreenState extends State<TrackingScreen> {
-  late MapController _mapController;
-  LatLng? _currentLocation;
+  final MapController _mapController = MapController();
   List<LatLng> _routePoints = [];
 
   @override
   void initState() {
     super.initState();
-    _mapController = MapController();
     _fetchRoute();
   }
 
@@ -36,13 +34,13 @@ class _TrackingScreenState extends State<TrackingScreen> {
     final response = await http.post(
       uri,
       headers: {
-        'Authorization': 'YOUR_OPEN_ROUTE_SERVICE_API_KEY',
+        'Authorization': 'YOUR_OPEN_ROUTE_SERVICE_API_KEY', // Replace with your API key
         'Content-Type': 'application/json',
       },
       body: json.encode({
         'coordinates': [
-          [8.681495, 49.41461], // Replace with delivery location coordinates
-          [8.687872, 49.420318], // Replace with user's coordinates
+          [8.681495, 49.41461], // Start coordinates
+          [8.687872, 49.420318], // Destination coordinates
         ]
       }),
     );
@@ -65,16 +63,16 @@ class _TrackingScreenState extends State<TrackingScreen> {
       ),
       body: FlutterMap(
         mapController: _mapController,
-        options: const MapOptions(
-          center: LatLng(49.41461, 8.681495),
-          zoom: 13.0,
+        options: MapOptions(
+          center: LatLng(49.41461, 8.681495), // Initial map center
+          zoom: 13.0,                         // Initial map zoom level
         ),
-        layers: [
-          TileLayerOptions(
+        children: [
+          TileLayer(
             urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             subdomains: ['a', 'b', 'c'],
           ),
-          PolylineLayerOptions(
+          PolylineLayer(
             polylines: [
               Polyline(
                 points: _routePoints,

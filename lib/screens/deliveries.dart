@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:stride_delivery/screens/tracking.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+
 
 class Deliveries extends StatefulWidget {
   const Deliveries({super.key});
@@ -12,7 +12,6 @@ class Deliveries extends StatefulWidget {
 }
 
 class _DeliveriesState extends State<Deliveries> {
-  // Sample data for today's deliveries
   final List<Delivery> todayDeliveries = [
     Delivery(
       orderId: '123',
@@ -32,11 +31,77 @@ class _DeliveriesState extends State<Deliveries> {
       address: '456 Maple Ave',
       phone: '555-5678',
     ),
+     Delivery(
+      orderId: '127',
+      customerName: 'Jane Smith',
+      status: 'Delivered',
+      deliveryTime: '9:30 AM',
+      products: ['Product C'],
+      address: '456 Maple Ave',
+      phone: '555-5678',
+    ), Delivery(
+      orderId: '132',
+      customerName: 'Jane Smith',
+      status: 'Delivered',
+      deliveryTime: '9:30 AM',
+      products: ['Product C'],
+      address: '456 Maple Ave',
+      phone: '555-5678',
+    ),
   ];
 
-  // Sample data for yesterday's deliveries
   final List<Delivery> yesterdayDeliveries = [
     Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ),
+     Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ), Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ), Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ),
+    Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ),Delivery(
+      orderId: '125',
+      customerName: 'Tom Brown',
+      status: 'Pending',
+      deliveryTime: '11:00 AM',
+      products: ['Product D', 'Product E'],
+      address: '789 Oak St',
+      phone: '555-8765',
+    ),Delivery(
       orderId: '125',
       customerName: 'Tom Brown',
       status: 'Pending',
@@ -60,63 +125,47 @@ class _DeliveriesState extends State<Deliveries> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: CustomScrollView(
-            slivers: [
-              // Today's deliveries
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  minHeight: 60,
-                  maxHeight: 60,
-                  child: const DeliveryTitle(title: 'Today'),
-                ),
-                pinned: true,
-              ),
-              
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    if(todayDeliveries.isNotEmpty){
-                    return DeliveryCard(
-                      delivery: todayDeliveries[index],
-                      onTap: () => _navigateToDetail(context, todayDeliveries[index]),
-                    );
-                    } else {
-                      return Container(); 
-                    }
-                  },
-                  childCount: todayDeliveries.length,
-                ),
-              ),
-              // Yesterday's deliveries
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  minHeight: 60,
-                  maxHeight: 60,
-                  child: const DeliveryTitle(title: 'Yesterday'),
-                ),
-                pinned: true,
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    if(yesterdayDeliveries.isNotEmpty){
-                    return DeliveryCard(
-                      delivery: yesterdayDeliveries[index],
-                      onTap: () => _navigateToDetail(context, yesterdayDeliveries[index]),
-                    );
-                  }else {
-                    return Container(); 
-                  }
-                  }, 
-                  childCount: yesterdayDeliveries.length,
-                ),
-              ),
-            ],
+      body: CustomScrollView(
+        slivers: [
+          SliverPersistentHeader(
+            delegate: _SliverAppBarDelegate(
+              minHeight: 60,
+              maxHeight: 60,
+              child: const DeliveryTitle(title: 'Today'),
+            ),
+            pinned: true,
           ),
-        ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return DeliveryCard(
+                  delivery: todayDeliveries[index],
+                  onTap: () => _navigateToDetail(context, todayDeliveries[index]),
+                );
+              },
+              childCount: todayDeliveries.length,
+            ),
+          ),
+          SliverPersistentHeader(
+            delegate: _SliverAppBarDelegate(
+              minHeight: 60,
+              maxHeight: 60,
+              child: const DeliveryTitle(title: 'Yesterday'),
+            ),
+            pinned: true,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return DeliveryCard(
+                  delivery: yesterdayDeliveries[index],
+                  onTap: () => _navigateToDetail(context, yesterdayDeliveries[index]),
+                );
+              },
+              childCount: yesterdayDeliveries.length,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -128,7 +177,7 @@ class _DeliveriesState extends State<Deliveries> {
         builder: (context) => DeliveryDetail(delivery: delivery),
       ),
     );
-    }
+  }
 }
 
 class DeliveryTitle extends StatelessWidget {
@@ -153,9 +202,9 @@ class Delivery {
   final String customerName;
   final String status;
   final String deliveryTime;
-  final List<String> products; // List of products ordered
-  final String address; // Delivery address
-  final String phone; // Customer phone number
+  final List<String> products;
+  final String address;
+  final String phone;
 
   Delivery({
     required this.orderId,
@@ -274,7 +323,7 @@ class DeliveryDetail extends StatelessWidget {
               icon: const Icon(Icons.phone),
               label: const Text('Call Customer'),
             ),
-            const Spacer(), // Pushes the button to the bottom
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -305,7 +354,8 @@ class DeliveryDetail extends StatelessWidget {
   }
 }
 
-// SliverPersistentHeaderDelegate to create sticky headers
+
+
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final double minHeight;
   final double maxHeight;
@@ -325,14 +375,19 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      child: child,
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: minHeight, maxHeight: maxHeight),
+      child: Container(
+        color: Colors.white,
+        child: child,
+      ),
     );
   }
 
   @override
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return child != oldDelegate.child;
+    return minHeight != oldDelegate.minHeight ||
+        maxHeight != oldDelegate.maxHeight ||
+        child != oldDelegate.child;
   }
 }

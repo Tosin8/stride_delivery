@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride_delivery/screens/deliveries.dart';
 import 'package:stride_delivery/screens/overview.dart';
-
 import 'package:stride_delivery/screens/tracking.dart';
+
+
 
 
 class NavigationMenu extends StatelessWidget {
@@ -53,7 +54,7 @@ class NavigationController extends GetxController {
   final screens = [
     const Overview(),
     const Deliveries(),
-     const TrackingScreen(deliveryAddress: '', customerName: '',),
+     const TrackingScreen(deliveryAddress: '', customerName: '',), 
      
    
   ];

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TrackingScreen extends StatefulWidget {
-  const TrackingScreen({super.key, required String deliveryAddress, required String customerName});
+  final String deliveryAddress;
+  final String customerName;
+
+  const TrackingScreen({
+    super.key,
+    required this.deliveryAddress,
+    required this.customerName,
+  });
 
   @override
   State<TrackingScreen> createState() => _TrackingScreenState();
@@ -10,20 +17,17 @@ class TrackingScreen extends StatefulWidget {
 class _TrackingScreenState extends State<TrackingScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold( 
+    // Placeholder screen for tracking with Google Maps
+    return Scaffold(
       appBar: AppBar(
-         title: const Text(
-          'Track',
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
+        title: Text('Tracking - ${widget.customerName}'),
       ),
       body: const Center(
-        child: Text('No Tracking Delivery'),
-      )
+        child: Text(
+          'Google Map tracking would go here for the delivery location.',
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
     );
   }
 }

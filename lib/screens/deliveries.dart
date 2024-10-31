@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class Deliveries extends StatefulWidget {
   const Deliveries({super.key});
@@ -21,13 +21,18 @@ class _DeliveriesState extends State<Deliveries> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Deliveries',
+          'Hello Jide, ',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
+        actions: const [
+          Icon(Iconsax.logout, color: Colors.black,),
+          SizedBox(width: 10,), 
+        ],
+        
       ),
       body: deliveries.isEmpty 
           ? const Center(child: Text('No Orders to Deliver'))
@@ -39,23 +44,13 @@ class _DeliveriesState extends State<Deliveries> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const DeliveryTitle(title: 'Today',), 
+                  
                     const SizedBox(height: 16),
-                    ListView.builder(
-                      itemCount: deliveries.length,
-                      itemBuilder: (context, index) {
-                        return DeliveryCard(delivery: deliveries[index]);
-                      
-                      },
+                    Column(
+                      children: deliveries.map((delivery) => DeliveryCard(delivery: delivery)).toList(),
                     ),
-                    const DeliveryTitle(title: 'Yesterday',),
-                    ListView.builder(
-                      itemCount: deliveries.length,
-                      itemBuilder: (context, index) {
-                        return DeliveryCard(delivery: deliveries[index]);
-                      
-                      },
-                    ),
+                    const SizedBox(height: 24),
+              
                   ],
                 ),
               ),
@@ -69,7 +64,7 @@ class DeliveryTitle extends StatelessWidget {
     super.key,
     required this.title,
   });
-final String title; 
+  final String title; 
   @override
   Widget build(BuildContext context) {
     return Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),);

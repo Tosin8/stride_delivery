@@ -65,7 +65,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
       ),
       body: FlutterMap(
         mapController: _mapController,
-        options: MapOptions(
+        options: const MapOptions(
           center: LatLng(49.41461, 8.681495),
           zoom: 13.0,
         ),

@@ -57,20 +57,22 @@ class _TrackingScreenState extends State<TrackingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const defaultPoint = LatLng(-8.923303951223144, 13.182696707942991);
     return Scaffold(
       appBar: AppBar(
         title: Text('Tracking - ${widget.customerName}'),
       ),
       body: FlutterMap(
         mapController: _mapController,
-        options: MapOptions(
-          center: LatLng(49.41461, 8.681495), // Initial map center
-          zoom: 13.0,                         // Initial map zoom level
+        options: const MapOptions(
+          initialCenter: defaultPoint,  // Initial map center
+          initialZoom: 13.0, 
+                               // Initial map zoom level
         ),
         children: [
           TileLayer(
             urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: ['a', 'b', 'c'],
+            subdomains: const ['a', 'b', 'c'],
           ),
           PolylineLayer(
             polylines: [

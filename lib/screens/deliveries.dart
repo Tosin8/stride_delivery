@@ -9,31 +9,34 @@ class Deliveries extends StatefulWidget {
 }
 
 class _DeliveriesState extends State<Deliveries> {
-  // Sample data for deliveries
   final List<Delivery> deliveries = [
     Delivery(orderId: '123', customerName: 'John Doe', status: 'Out for delivery', deliveryTime: '10:00 AM'),
     Delivery(orderId: '124', customerName: 'Jane Smith', status: 'Delivered', deliveryTime: '9:30 AM'),
     Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),
-    Delivery(orderId: '123', customerName: 'John Doe', status: 'Out for delivery', deliveryTime: '10:00 AM'),
+     Delivery(orderId: '123', customerName: 'John Doe', status: 'Delivered', deliveryTime: '10:00 AM'),
     Delivery(orderId: '124', customerName: 'Jane Smith', status: 'Delivered', deliveryTime: '9:30 AM'),
-    Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),Delivery(orderId: '123', customerName: 'John Doe', status: 'Out for delivery', deliveryTime: '10:00 AM'),
-    Delivery(orderId: '124', customerName: 'Jane Smith', status: 'Delivered', deliveryTime: '9:30 AM'),
-    Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),Delivery(orderId: '123', customerName: 'John Doe', status: 'Out for delivery', deliveryTime: '10:00 AM'),
- 
+    Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    sortDeliveriesByStatus();
+  }
+
+  void sortDeliveriesByStatus() {
+    // Define the order of statuses
+    const statusOrder = ['Out for delivery', 'Delivered', 'Pending'];
+    // Sort deliveries based on status
+    deliveries.sort((a, b) => statusOrder.indexOf(a.status).compareTo(statusOrder.indexOf(b.status)));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        bottom: const PreferredSize(preferredSize: Size.fromHeight(18), child: Column(
-          mainAxisAlignment: MainAxisAlignment.start, 
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Text('Your Deliveries', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-        ])),
         title: const Text(
-          'Hello Jide, ',
+          'Hello Jide,',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
@@ -41,45 +44,70 @@ class _DeliveriesState extends State<Deliveries> {
           ),
         ),
         actions: const [
-          Icon(Iconsax.logout, color: Colors.black,),
-          SizedBox(width: 10,), 
+          Icon(Iconsax.logout, color: Colors.black),
+          SizedBox(width: 10),
         ],
-        
       ),
-      body: deliveries.isEmpty 
+      body: deliveries.isEmpty
           ? const Center(child: Text('No Orders to Deliver'))
-          : Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  
-                    const SizedBox(height: 16),
-                    Column(
-                      children: deliveries.map((delivery) => DeliveryCard(delivery: delivery)).toList(),
+          : CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _SliverAppBarDelegate(
+                    minHeight: 50.0,
+                    maxHeight: 50.0,
+                    child: Container(
+                      color: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Your Deliveries',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
                     ),
-                    const SizedBox(height: 24),
-              
-                  ],
+                  ),
                 ),
-              ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return DeliveryCard(delivery: deliveries[index]);
+                    },
+                    childCount: deliveries.length,
+                  ),
+                ),
+              ],
             ),
     );
   }
 }
 
-class DeliveryTitle extends StatelessWidget {
-  const DeliveryTitle({
-    super.key,
-    required this.title,
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
   });
-  final String title; 
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
   @override
-  Widget build(BuildContext context) {
-    return Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),);
+  double get minExtent => minHeight;
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }
 
@@ -109,7 +137,7 @@ class DeliveryCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

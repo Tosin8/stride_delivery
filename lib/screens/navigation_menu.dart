@@ -27,16 +27,16 @@ class NavigationMenu extends StatelessWidget {
           indicatorColor: Colors.black,
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           destinations: [
+            // NavigationDestination(
+            //   icon: Icon(Iconsax.home, color: controller.selectedIndex.value == 0 ? Colors.white : Colors.grey),
+            //   label: 'Home',
+            // ),
             NavigationDestination(
-              icon: Icon(Iconsax.home, color: controller.selectedIndex.value == 0 ? Colors.white : Colors.grey),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Iconsax.scroll, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.grey),
+              icon: Icon(Iconsax.scroll, color: controller.selectedIndex.value == 0 ? Colors.white : Colors.grey),
               label: 'Orders',
             ),
             NavigationDestination(
-              icon: Icon(Iconsax.location, color: controller.selectedIndex.value == 2 ? Colors.white : Colors.grey),
+              icon: Icon(Iconsax.location, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.grey),
               label: 'Track',
             ),
         
@@ -52,7 +52,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    const Overview(),
+    //const Overview(),
     const Deliveries(),
      const TrackingScreen(deliveryAddress: '', customerName: '',), 
      

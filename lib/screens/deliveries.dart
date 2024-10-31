@@ -50,68 +50,6 @@ class _DeliveriesState extends State<Deliveries> {
     ),
   ];
 
-  final List<Delivery> yesterdayDeliveries = [
-    Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ),
-     Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ), Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ), Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ),
-    Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ),Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ),Delivery(
-      orderId: '125',
-      customerName: 'Tom Brown',
-      status: 'Pending',
-      deliveryTime: '11:00 AM',
-      products: ['Product D', 'Product E'],
-      address: '789 Oak St',
-      phone: '555-8765',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

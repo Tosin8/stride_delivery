@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'navigation_menu.dart';
+
 class Deliveries extends StatefulWidget {
   const Deliveries({super.key});
 
@@ -236,15 +238,31 @@ class DeliveryDetails extends StatelessWidget {
       ),
       bottomSheet: GestureDetector(
         onTap: () {
-          
-        }, 
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NavigationMenu(),
+              settings: RouteSettings(
+                arguments: {
+                  'screen': 1, // Set index to navigate to the TrackingScreen
+                  'deliveryAddress': delivery.address,
+                  'customerName': delivery.customerName,
+                },
+              ),
+            ),
+          );
+        },
         child: Container(
           decoration: const BoxDecoration(color: Colors.black),
           width: double.infinity,
-          height: 80, 
+          height: 80,
           padding: const EdgeInsets.all(16.0),
-          child: const Align(child: Text('Initiate Order Delivery', 
-          style: TextStyle(color: Colors.white, fontSize: 18),)),
+          child: const Align(
+            child: Text(
+              'Initiate Order Delivery',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
         ),
       ),
       body: Padding(
@@ -260,8 +278,7 @@ class DeliveryDetails extends StatelessWidget {
             const Text('Product Items:', style: TextStyle(fontSize: 18)),
             const SizedBox(height: 8),
             ...delivery.productItems
-                .map((item) => Text('- $item', style: const TextStyle(fontSize: 16)))
-                ,
+                .map((item) => Text('- $item', style: const TextStyle(fontSize: 16))),
             const SizedBox(height: 16),
             const Text('Address:', style: TextStyle(fontSize: 18)),
             Text(
@@ -277,18 +294,8 @@ class DeliveryDetails extends StatelessWidget {
                   delivery.phoneNumber,
                   style: const TextStyle(fontSize: 16, color: Colors.blue),
                 ),
-                IconButton(
-                  icon: const Icon(Iconsax.call, color: Colors.green),
-                  onPressed: () async {
-                    final url = 'tel:${delivery.phoneNumber}';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    }
-                  },
-                ),
               ],
             ),
-         
           ],
         ),
       ),

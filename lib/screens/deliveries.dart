@@ -9,26 +9,34 @@ class Deliveries extends StatefulWidget {
 }
 
 class _DeliveriesState extends State<Deliveries> {
+  // Sample data for deliveries
   final List<Delivery> deliveries = [
     Delivery(orderId: '123', customerName: 'John Doe', status: 'Out for delivery', deliveryTime: '10:00 AM'),
     Delivery(orderId: '124', customerName: 'Jane Smith', status: 'Delivered', deliveryTime: '9:30 AM'),
     Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),
-     Delivery(orderId: '123', customerName: 'John Doe', status: 'Delivered', deliveryTime: '10:00 AM'),
-    Delivery(orderId: '124', customerName: 'Jane Smith', status: 'Delivered', deliveryTime: '9:30 AM'),
-    Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),
+    Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Pending', deliveryTime: '11:00 AM'),Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Delivered', deliveryTime: '11:00 AM'),Delivery(orderId: '125', customerName: 'Tom Brown', status: 'Out for delivery', deliveryTime: '11:00 AM'),
+    
   ];
 
   @override
   void initState() {
     super.initState();
-    sortDeliveriesByStatus();
-  }
-
-  void sortDeliveriesByStatus() {
-    // Define the order of statuses
-    const statusOrder = ['Out for delivery', 'Delivered', 'Pending'];
-    // Sort deliveries based on status
-    deliveries.sort((a, b) => statusOrder.indexOf(a.status).compareTo(statusOrder.indexOf(b.status)));
+    // Sort deliveries in the specified order
+    deliveries.sort((a, b) {
+      int order(String status) {
+        switch (status) {
+          case 'Pending':
+            return 0;
+          case 'Out for delivery':
+            return 1;
+          case 'Delivered':
+            return 2;
+          default:
+            return 3; // In case of unknown status
+        }
+      }
+      return order(a.status).compareTo(order(b.status));
+    });
   }
 
   @override
@@ -50,64 +58,51 @@ class _DeliveriesState extends State<Deliveries> {
       ),
       body: deliveries.isEmpty
           ? const Center(child: Text('No Orders to Deliver'))
-          : CustomScrollView(
-              slivers: [
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _SliverAppBarDelegate(
-                    minHeight: 50.0,
-                    maxHeight: 50.0,
-                    child: Container(
-                      color: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      alignment: Alignment.centerLeft,
-                      child: const Text(
-                        'Your Deliveries',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
+          : Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: CustomScrollView(
+                slivers: [
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _StickyHeaderDelegate(),
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return DeliveryCard(delivery: deliveries[index]);
+                      },
+                      childCount: deliveries.length,
                     ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      return DeliveryCard(delivery: deliveries[index]);
-                    },
-                    childCount: deliveries.length,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
     );
   }
 }
 
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
+class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
-  double get minExtent => minHeight;
+  double get minExtent => 50;
   @override
-  double get maxExtent => maxHeight;
+  double get maxExtent => 50;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
+    return Container(
+      color: Colors.white,
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: const Text(
+        'Your Deliveries',
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+      ),
+    );
   }
 
   @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
 
@@ -137,7 +132,7 @@ class DeliveryCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

@@ -234,6 +234,19 @@ class DeliveryDetails extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Delivery Details'),
       ),
+      bottomSheet: GestureDetector(
+        onTap: () {
+          
+        }, 
+        child: Container(
+          decoration: const BoxDecoration(color: Colors.black),
+          width: double.infinity,
+          height: 80, 
+          padding: const EdgeInsets.all(16.0),
+          child: const Align(child: Text('Initiate Order Delivery', 
+          style: TextStyle(color: Colors.white, fontSize: 18),)),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -275,15 +288,7 @@ class DeliveryDetails extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Initiate delivery logic
-                },
-                child: const Text('Initiate Order Delivery'),
-              ),
-            ),
+         
           ],
         ),
       ),

@@ -38,7 +38,47 @@ class _DeliveriesState extends State<Deliveries> {
       phoneNumber: '+1230984567',
       productItems: ['Hat', 'Gloves'],
     ),
+    Delivery(
+      orderId: '126',
+      customerName: 'Alice White',
+      status: 'Pending',
+      deliveryTime: '10:45 AM',
+      address: '111 Road, City, Country',
+      phoneNumber: '+1123456789',
+      productItems: ['Dress', 'Belt'],
+    ),
+    Delivery(
+      orderId: '127',
+      customerName: 'Bob Green',
+      status: 'Out for delivery',
+      deliveryTime: '10:20 AM',
+      address: '222 Lane, City, Country',
+      phoneNumber: '+1987654321',
+      productItems: ['Scarf', 'Shoes'],
+    ),
+    Delivery(
+      orderId: '128',
+      customerName: 'Emma Blue',
+      status: 'Delivered',
+      deliveryTime: '8:30 AM',
+      address: '333 Avenue, City, Country',
+      phoneNumber: '+1234567899',
+      productItems: ['T-shirt', 'Jeans'],
+    ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _sortDeliveries(); // Sort the deliveries on initialization
+  }
+
+  void _sortDeliveries() {
+    deliveries.sort((a, b) {
+      final statusOrder = ['Pending', 'Out for delivery', 'Delivered'];
+      return statusOrder.indexOf(a.status).compareTo(statusOrder.indexOf(b.status));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

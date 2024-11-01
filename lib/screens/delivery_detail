@@ -157,16 +157,16 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'delivery.dart'; // Ensure this is the correct path to your Delivery model
 
 class DeliveryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Access the delivery data passed through arguments
-    final delivery = Get.arguments as Delivery;
+    // Retrieve the delivery instance from GetX dependency injection
+    final delivery = Get.find<Delivery>();
 
     return Scaffold(
       appBar: AppBar(

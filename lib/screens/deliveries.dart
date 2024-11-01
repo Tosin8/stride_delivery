@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:stride_delivery/auth/repository/auth_repo.dart';
+import 'package:stride_delivery/auth/repository/user_repo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'navigation_menu.dart';
@@ -82,21 +85,40 @@ class _DeliveriesState extends State<Deliveries> {
     });
   }
 
+// Logout method to call AuthenticationRepository's logout
+  Future<void> _logout() async {
+    await AuthenticationRepository.instance.logout();
+  }
+
+  final userRepo = UserRepository.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Hello Jide,',
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
+        // title: const Text(
+        //   'Hello Jide,',
+        //   style: TextStyle(
+        //     fontSize: 22,
+        //     fontWeight: FontWeight.w600,
+        //     color: Colors.black,
+        //   ),
+        // ),
+
+         title: Obx(() {
+          // Use Obx to reactively update the title with the user's first name
+          final firstName = userRepo.userModel.value.firstName;
+          return Text('Hello ${firstName.isNotEmpty ? firstName : 'User'}');
+        }),
+      
+           actions: [
+          IconButton(
+            icon: const Icon(Iconsax.logout, color: Colors.black),
+            onPressed: () async {
+              await _logout();
+            },
           ),
-        ),
-        actions: const [
-          Icon(Iconsax.logout, color: Colors.black),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
         ],
       ),
       body: deliveries.isEmpty

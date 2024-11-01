@@ -65,9 +65,14 @@ import 'package:stride_delivery/screens/tracking.dart';
 
 import 'deliveries.dart';
 
-class NavigationMenu extends StatelessWidget {
+class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});
 
+  @override
+  State<NavigationMenu> createState() => _NavigationMenuState();
+}
+
+class _NavigationMenuState extends State<NavigationMenu> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());

@@ -1,25 +1,196 @@
+// class DeliveryDetails extends StatelessWidget {
+//   final Delivery delivery;
+
+//   const DeliveryDetails({super.key, required this.delivery});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Delivery Details'),
+//       ),
+//       bottomSheet: GestureDetector(
+//         onTap: () {
+          
+//         }, 
+//         child: Container(
+//           decoration: const BoxDecoration(color: Colors.black),
+//           width: double.infinity,
+//           height: 80, 
+//           padding: const EdgeInsets.all(16.0),
+//           child: const Align(child: Text('Initiate Order Delivery', 
+//           style: TextStyle(color: Colors.white, fontSize: 18),)),
+//         ),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text(
+//               'Order ID: ${delivery.orderId}',
+//               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//             ),
+//             const SizedBox(height: 16),
+//             const Text('Product Items:', style: TextStyle(fontSize: 18)),
+//             const SizedBox(height: 8),
+//             ...delivery.productItems
+//                 .map((item) => Text('- $item', style: const TextStyle(fontSize: 16)))
+//                 ,
+//             const SizedBox(height: 16),
+//             const Text('Address:', style: TextStyle(fontSize: 18)),
+//             Text(
+//               delivery.address,
+//               style: const TextStyle(fontSize: 16, color: Colors.grey),
+//             ),
+//             const SizedBox(height: 16),
+//             Row(
+//               children: [
+//                 const Text('Phone:', style: TextStyle(fontSize: 18)),
+//                 const SizedBox(width: 8),
+//                 Text(
+//                   delivery.phoneNumber,
+//                   style: const TextStyle(fontSize: 16, color: Colors.blue),
+//                 ),
+//                 IconButton(
+//                   icon: const Icon(Iconsax.call, color: Colors.green),
+//                   onPressed: () async {
+//                     final url = 'tel:${delivery.phoneNumber}';
+//                     if (await canLaunch(url)) {
+//                       await launch(url);
+//                     }
+//                   },
+//                 ),
+//               ],
+//             ),
+         
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:iconsax/iconsax.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'tracking.dart';
+
+// class DeliveryDetails extends StatelessWidget {
+//   final Delivery delivery;
+
+//   const DeliveryDetails({super.key, required this.delivery});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Delivery Details'),
+//       ),
+//       bottomSheet: GestureDetector(
+//         onTap: () {
+//           // Navigate to the TrackingScreen with the delivery address and customer name
+//           Get.to(() => TrackingScreen(
+//                 deliveryAddress: delivery.address,
+//                 customerName: delivery.customerName, // Make sure `customerName` exists in `Delivery`
+//               ));
+//         },
+//         child: Container(
+//           decoration: const BoxDecoration(color: Colors.black),
+//           width: double.infinity,
+//           height: 80,
+//           padding: const EdgeInsets.all(16.0),
+//           child: const Align(
+//             child: Text(
+//               'Initiate Order Delivery',
+//               style: TextStyle(color: Colors.white, fontSize: 18),
+//             ),
+//           ),
+//         ),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text(
+//               'Order ID: ${delivery.orderId}',
+//               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//             ),
+//             const SizedBox(height: 16),
+//             const Text('Product Items:', style: TextStyle(fontSize: 18)),
+//             const SizedBox(height: 8),
+//             ...delivery.productItems
+//                 .map((item) => Text('- $item', style: const TextStyle(fontSize: 16))),
+//             const SizedBox(height: 16),
+//             const Text('Address:', style: TextStyle(fontSize: 18)),
+//             Text(
+//               delivery.address,
+//               style: const TextStyle(fontSize: 16, color: Colors.grey),
+//             ),
+//             const SizedBox(height: 16),
+//             Row(
+//               children: [
+//                 const Text('Phone:', style: TextStyle(fontSize: 18)),
+//                 const SizedBox(width: 8),
+//                 Text(
+//                   delivery.phoneNumber,
+//                   style: const TextStyle(fontSize: 16, color: Colors.blue),
+//                 ),
+//                 IconButton(
+//                   icon: const Icon(Iconsax.call, color: Colors.green),
+//                   onPressed: () async {
+//                     final url = 'tel:${delivery.phoneNumber}';
+//                     if (await canLaunch(url)) {
+//                       await launch(url);
+//                     }
+//                   },
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+
 class DeliveryDetails extends StatelessWidget {
-  final Delivery delivery;
-
-  const DeliveryDetails({super.key, required this.delivery});
-
   @override
   Widget build(BuildContext context) {
+    // Access the delivery data passed through arguments
+    final delivery = Get.arguments as Delivery;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Delivery Details'),
       ),
       bottomSheet: GestureDetector(
         onTap: () {
-          
-        }, 
+          // Navigate to TrackingScreen with named route and pass parameters
+          Get.toNamed('/tracking', arguments: {
+            'deliveryAddress': delivery.address,
+            'customerName': delivery.customerName,
+          });
+        },
         child: Container(
           decoration: const BoxDecoration(color: Colors.black),
           width: double.infinity,
-          height: 80, 
+          height: 80,
           padding: const EdgeInsets.all(16.0),
-          child: const Align(child: Text('Initiate Order Delivery', 
-          style: TextStyle(color: Colors.white, fontSize: 18),)),
+          child: const Align(
+            child: Text(
+              'Initiate Order Delivery',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
         ),
       ),
       body: Padding(
@@ -35,8 +206,7 @@ class DeliveryDetails extends StatelessWidget {
             const Text('Product Items:', style: TextStyle(fontSize: 18)),
             const SizedBox(height: 8),
             ...delivery.productItems
-                .map((item) => Text('- $item', style: const TextStyle(fontSize: 16)))
-                ,
+                .map((item) => Text('- $item', style: const TextStyle(fontSize: 16))),
             const SizedBox(height: 16),
             const Text('Address:', style: TextStyle(fontSize: 18)),
             Text(
@@ -63,7 +233,6 @@ class DeliveryDetails extends StatelessWidget {
                 ),
               ],
             ),
-         
           ],
         ),
       ),

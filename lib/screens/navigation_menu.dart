@@ -62,30 +62,37 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:stride_delivery/screens/tracking.dart';
-
 import 'deliveries.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});
 
   @override
-  State<NavigationMenu> createState() => _NavigationMenuState();
+  _NavigationMenuState createState() => _NavigationMenuState();
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
+  late final NavigationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(NavigationController());
+
+    // Retrieve any arguments passed during navigation and update index accordingly
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final routeArgs = ModalRoute.of(context)?.settings.arguments as Map?;
+      if (routeArgs != null) {
+        final selectedScreen = routeArgs['screen'] as int;
+        if (selectedScreen == 1) {
+          controller.selectedIndex.value = 1; // Set index to TrackingScreen
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
-
-    // Retrieve any arguments passed during navigation
-    final routeArgs = ModalRoute.of(context)!.settings.arguments as Map?;
-    if (routeArgs != null) {
-      final selectedScreen = routeArgs['screen'] as int;
-      if (selectedScreen == 1) {
-        controller.selectedIndex.value = 1; // Set index to TrackingScreen
-      }
-    }
-
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBar(
@@ -119,10 +126,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    //const Overview(),
     const Deliveries(),
-     const TrackingScreen(deliveryAddress: '', customerName: '',), 
-     
-   
+    const TrackingScreen(deliveryAddress: '', customerName: ''),
   ];
 }
